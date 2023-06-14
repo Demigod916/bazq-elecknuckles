@@ -33,6 +33,8 @@ AddEventHandler('gameEventTriggered', function (name, args)
 
         StartNetworkedParticleFxNonLoopedAtCoord("ent_sht_electrical_box_sp", coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, 1.0, false, false, false)
 
+	RemoveNamedPtfxAsset("des_tv_smash")
+
         SetPedToRagdoll(PlayerPedId(), 1000, 1000, 0, 0, 0, 0)
 
 
