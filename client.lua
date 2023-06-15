@@ -14,47 +14,31 @@ local function electricParticles(ped)
 
     UseParticleFxAsset("des_tv_smash")
 
-    StartNetworkedParticleFxNonLoopedAtCoord(
-        "ent_sht_electrical_box_sp",
-        coords.x,
-        coords.y,
-        coords.z,
-        0.0,
-        0.0,
-        0.0,
-        1.0,
-        false,
-        false,
-        false
-    )
+    StartNetworkedParticleFxNonLoopedAtCoord("ent_sht_electrical_box_sp", coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, 1.0, false, false, false)
 
     RemoveNamedPtfxAsset("des_tv_smash")
 end
 
 AddEventHandler("gameEventTriggered", function(name, args)
-        local weapon = args[7]
-
-        if name ~= "CEventNetworkEntityDamage" or weapon ~= joaat("WEAPON_ELECKNUCKLE") then
-            return
-        end
-
+        if name ~= "CEventNetworkEntityDamage"  then return end
+        
+        local weapon = args?[7]
+        
+        if weapon ~= joaat("WEAPON_ELECKNUCKLE") then return end
+        
         local victim = args[1]
         local attacker = args[2]
         local isDead = args[6] == 1
         local isPed = IsEntityAPed(victim)
 
-        if isDead then
-            return
-        end
+        if isDead then return end
 
         if victim == PlayerPedId() then
             electricParticles(attacker)
 
             stunStart = GetGameTimer()
 
-            if isStunned then
-                return
-            end
+            if isStunned then return end
 
             isStunned = true
 
@@ -69,9 +53,7 @@ AddEventHandler("gameEventTriggered", function(name, args)
         elseif isPed and attacker == PlayerPedId() then
             electricParticles(attacker)
 
-            if IsPedRagdoll(victim) then
-                return
-            end
+            if IsPedRagdoll(victim) then return end
 
             local stunStartLocal = GetGameTimer()
 
