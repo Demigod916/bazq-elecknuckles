@@ -1,5 +1,6 @@
 fx_version 'cerulean'
 games {'gta5'}
+lua54 "yes"
 description 'Add-on weapon generated using vWeaponsToolkit'
 
 files{
