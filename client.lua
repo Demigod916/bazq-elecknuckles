@@ -9,7 +9,7 @@ local function electricParticles(ped)
     RequestNamedPtfxAsset("des_tv_smash")
 
     while not HasNamedPtfxAssetLoaded("des_tv_smash") do
-        Citizen.Wait(0)
+        Wait(0)
     end
 
     UseParticleFxAsset("des_tv_smash")
@@ -31,9 +31,7 @@ local function electricParticles(ped)
     RemoveNamedPtfxAsset("des_tv_smash")
 end
 
-AddEventHandler(
-    "gameEventTriggered",
-    function(name, args)
+AddEventHandler("gameEventTriggered", function(name, args)
         local weapon = args[7]
 
         if name ~= "CEventNetworkEntityDamage" or weapon ~= joaat("WEAPON_ELECKNUCKLE") then
