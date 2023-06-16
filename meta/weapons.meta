@@ -19,7 +19,7 @@
 					<Model>w_me_bazq-elecknuckle</Model>
 					<Audio/>
 					<Slot>SLOT_WEAPON_ELECKNUCKLE</Slot>
-					<DamageType>ELECTRIC</DamageType>
+					<DamageType>MELEE</DamageType>
 					<Explosion>
 						<Default>DONTCARE</Default>
 						<HitCar>DONTCARE</HitCar>

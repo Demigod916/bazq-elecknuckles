@@ -21,20 +21,21 @@ end
 
 AddEventHandler("gameEventTriggered", function(name, args)
         if name ~= "CEventNetworkEntityDamage"  then return end
-        
+
         local weapon = args?[7]
-        
+
         if weapon ~= joaat("WEAPON_ELECKNUCKLE") then return end
-        
+
         local victim = args[1]
         local attacker = args[2]
         local isDead = args[6] == 1
         local isPed = IsEntityAPed(victim)
 
+        electricParticles(attacker)
+
         if isDead then return end
 
         if victim == PlayerPedId() then
-            electricParticles(attacker)
 
             stunStart = GetGameTimer()
 
@@ -51,7 +52,6 @@ AddEventHandler("gameEventTriggered", function(name, args)
 
             isStunned = false
         elseif isPed and attacker == PlayerPedId() then
-            electricParticles(attacker)
 
             if IsPedRagdoll(victim) then return end
 
